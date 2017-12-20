@@ -1,0 +1,29 @@
+{
+  "name": "nate-chat-be",
+  "version": "1.0.0",
+  "description": "Chat App with WebSockets",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "webpack"
+  },
+  "keywords": [
+    "socket.io",
+    "midi",
+    "drums",
+    "drumkit"
+  ],
+  "author": "Joshua Hansen <josh@iamjoshhansen.com>",
+  "dependencies": {
+    "dateformat": "^3.0.2",
+    "express": "^4.16.2",
+    "midi": "^0.9.5",
+    "onoff": "^1.1.8",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/onoff": "0.0.27",
+    "@types/socket.io": "^1.4.31",
+    "webpack": "^3.8.1"
+  }
+}
