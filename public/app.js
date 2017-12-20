@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000');
+const socket = io('http://localhost:3001');
 
 socket.on('connect', () => {
   console.log('Connected to the server');
@@ -8,8 +8,8 @@ socket.on('disconnect', () => {
   console.log('Disconnected');
 });
 
-socket.on('msg', (data) => {
-  console.log(`Server emitted msg: ${data}`);
+socket.on('set-connection', (val) => {
+  console.log(`Server declared connection: ${val}`);
 });
 
 const idToNote = {
@@ -25,17 +25,17 @@ const idToNote = {
 };
 
 socket.on('note', (data) => {
-  // console.log(data);
-  const $thing = $(`.thing--${idToNote[data.id]}`);
+  console.log('note data', data);
+  const $thing = $(`.thing--${idToNote[data.i]}`);
   const activeClass = 'active';
   
-  if (data.velocity > 0) {
-    const animationDuration = 100 + ((data.velocity / 127) * 100);
-    console.log(`Server emitted note: ${data.id} at ${data.velocity} for ${animationDuration}`);
+  if (data.v > 0) {
+    const animationDuration = 100 + ((data.v / 127) * 100);
+    console.log(`Server emitted note: ${data.i} at ${data.v} for ${animationDuration}`);
     $thing
       .stop()
       .addClass(activeClass)
-      .css('top', 100 + (data.velocity / 127) * (window.innerHeight - 142))
+      .css('top', 100 + (data.v / 127) * (window.innerHeight - 142))
       .animate({
         top: 100,
       }, animationDuration, () => {
@@ -44,7 +44,7 @@ socket.on('note', (data) => {
   }
   
   // instant
-  // $thing[(data.velocity === 0) ? 'removeClass' : 'addClass'](activeClass);
+  // $thing[(data.v === 0) ? 'removeClass' : 'addClass'](activeClass);
 });
 
 $(window).on('keydown', (ev) => {
