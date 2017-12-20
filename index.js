@@ -341,7 +341,7 @@ var connectedCondition = new condition_1.default('connected', false);
 connectedCondition.on('change', function (val) {
     io.emit('set-connection', val);
 });
-var socket = __webpack_require__(13)('http://localhost:3000');
+var socket = __webpack_require__(13)('http://192.168.1.113:3000');
 socket
     .on('connect', function () {
     connectedCondition.set(true);
